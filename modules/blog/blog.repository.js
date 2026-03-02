@@ -19,6 +19,14 @@ class BlogRepository {
     return rows;
   }
 
+  async findPost(id){
+    const { rows } = await db.query(
+	`SELECT * FROM blog WHERE id = $1`, [id]
+	);
+	return rows;
+
+  }
+
   async deleteFromdb(id){
    const { rows } = await db.query(
      `DELETE FROM blog WHERE id = $1;`, [id]

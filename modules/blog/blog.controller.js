@@ -20,8 +20,13 @@ class BlogController {
 	return res.status(400).json({ message: 'Nothing to delete' });
     }
 	const { id } = req.params;
+    	const validatePost = await service.getPost(id);
+    if(validatePost.length <= 0){
+       return res.status(404).json({ message: 'Nothing to delete', errorCode: 404 })
+    }
+
 	const deleted = await service.deletePost(id);
-	res.status(200).json(deleted)
+	return res.status(200).json(deleted)
 
   }
 }

@@ -30,6 +30,10 @@ class BlogService {
     return repo.findAll();
   }
 
+  async getPost(id) {
+   return repo.findPost();
+  }
+
   async deletePost(id) {
     console.log(id)
     repo.deleteFromdb(id);
