@@ -18,6 +18,13 @@ class BlogRepository {
     );
     return rows;
   }
+
+  async deleteFromdb(id){
+   const { rows } = await db.query(
+     `DELETE FROM blog WHERE id = $1;`, [id]
+   );
+   return { ok: true }
+  }
 }
 
 module.exports = new BlogRepository();

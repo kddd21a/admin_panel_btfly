@@ -14,6 +14,16 @@ class BlogController {
     const post = await service.create(req.body, req.file);
     res.status(201).json(post);
   }
+
+  async delete(req, res){
+    if(!req.params){
+	return res.status(400).json({ message: 'Nothing to delete' });
+    }
+	const { id } = req.params;
+	const deleted = await service.deletePost(id);
+	res.status(200).json(deleted)
+
+  }
 }
 
 module.exports = new BlogController();

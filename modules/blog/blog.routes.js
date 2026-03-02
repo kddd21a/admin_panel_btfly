@@ -9,6 +9,11 @@ router.get(
   asyncHandler(controller.list)
 );
 
+router.get(
+  '/delete/:id',
+  asyncHandler(controller.delete)
+);
+
 router.post(
   '/upload',
   upload.single('file'),

@@ -18,7 +18,7 @@ class BlogService {
       }
     );
 
-    const fileUrl = `http://${config.minio.endPoint}:${config.minio.port}/${config.minio.bucket}/${fileName}`;
+    const fileUrl = `${config.minio.bucketBlog}/${fileName}`;
 
     return repo.create({
       ...data,
@@ -29,6 +29,14 @@ class BlogService {
   async getAll() {
     return repo.findAll();
   }
+
+  async deletePost(id) {
+    console.log(id)
+    repo.deleteFromdb(id);
+    return {
+	ok: true
+  }
+ }
 }
 
 module.exports = new BlogService();
